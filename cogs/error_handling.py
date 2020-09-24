@@ -16,12 +16,16 @@ class ErrorHandling(commands.Cog):
         if isinstance(error,commands.CommandOnCooldown) or isinstance(error,commands.MaxConcurrencyReached):
             return
             # await utils.error_embed(ctx, 'Invalid command', f'Use `{utils.prefix}help` to see the available commands.')
+    
         if isinstance(error, commands.CommandNotFound):
+            """
             msg=await utils.error_embed(ctx, 'Invalid command', f'Use `{utils.prefix}help` to see the available commands.')
             await asyncio.sleep(2)
             await ctx.message.delete()
             await msg.delete()
+            """
             return
+        
 
 
         if isinstance(error, commands.CheckFailure):
