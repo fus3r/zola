@@ -39,7 +39,7 @@ class Info(commands.Cog):
         SQL_guilds.execute(f'select location from Guilds where guild_id="{ctx.guild.id}"')
         location=SQL_guilds.fetchone()
         print(location[0])
-        channel_location = find(lambda x: x.name == 'zola',  ctx.guild.text_channels) 
+        channel_location = find(lambda x: x.name == location[0],  ctx.guild.text_channels) 
         proc = Process()
         with proc.oneshot():
             mem_total = virtual_memory().total / (1024 ** 2)
@@ -57,13 +57,13 @@ class Info(commands.Cog):
             ("__*Developer*__", "<@358629457025826816>", False),
 
             ("__*Language | Library*__",
-             f"<:python3:232720527448342530> Python {python_version()} | <:discord:741045246435262482> Discord.py {discord_version}",
+             f"<:python:596577462335307777> Python {python_version()} | <:dpy:596577034537402378> Discord.py {discord_version}",
              False),
 
-            ("__*<:discord:741045246435262482> Support Server*__",
+            ("__*<a:squirtleHype:739616791084400701> Support Server*__",
              "[Here!](https://discord.gg/FhxgvF)", True),
 
-            ("__*<:invite:741045282929901678> Invite Link*__",
+            ("__*<a:crabrave:739615014679347201> Invite Link*__",
              "Not set yet", True),
              #"[Here!](https://discord.com/oauth2/authorize?client_id=721397896704163965&scope=bot&permissions=470117623)", True),
 
@@ -160,14 +160,14 @@ class Info(commands.Cog):
         # Logic from: https://github.com/TrustyJAID/Trusty-cogs/blob/master/serverstats/serverstats.py#L159
         online_stats = {
             ("Humans: "): lambda x: not x.bot,
-            (" • Bots: "): lambda x: x.bot,
-            "\n\N{LARGE GREEN CIRCLE} ONLINE": lambda x: x.status is discord.Status.online,
-            "\n\N{LARGE ORANGE CIRCLE} IDLE": lambda x: x.status is discord.Status.idle,
-            "\N{LARGE RED CIRCLE} DNB": lambda x: x.status is discord.Status.do_not_disturb,
-            "\n\N{MEDIUM WHITE CIRCLE} OFFLINE \N{VARIATION SELECTOR-16}": lambda x: (
+            (" •<:bot_tag:596576775555776522>Bots: "): lambda x: x.bot,
+            "\n<:status_online:596576749790429200> ONLINE": lambda x: x.status is discord.Status.online,
+            "\n<:status_idle:596576773488115722> IDLE": lambda x: x.status is discord.Status.idle,
+            "<:status_dnd:596576774364856321> DNB": lambda x: x.status is discord.Status.do_not_disturb,
+            "\n<:status_offline:596576752013279242> OFFLINE \N{VARIATION SELECTOR-16}": lambda x: (
                 x.status is discord.Status.offline
             ),
-            "\N{LARGE PURPLE CIRCLE} STREAMING": lambda x: any(
+            "<:status_streaming:596576747294818305> STREAMING": lambda x: any(
                 a.type is discord.ActivityType.streaming for a in x.activities
             ),
             "\n\N{MOBILE PHONE} ON MOBILE": lambda x: x.is_on_mobile(),
