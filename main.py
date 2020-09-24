@@ -312,7 +312,7 @@ async def on_guild_join(guild): #When a bot joins a server
     #Sends a welcome message in the weather channel (name will change ofc)
     weather_msg = find(lambda x: x.name == 'zola',  guild.text_channels)
     if weather_msg and weather_msg.permissions_for(guild.me).send_messages:
-        await weather_msg.send('Hello {}! I am Weather bot, still in alpha. Please use me in this specific channel'.format(guild.name))
+        await weather_msg.send('Hello {}! I am zola, still in alpha. Please use me in this specific channel'.format(guild.name))
     
     #Load the Owner Guild JSON File
     str_data_Owners = open('Ownersguilds.json').read()
