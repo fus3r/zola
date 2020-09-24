@@ -1,0 +1,89 @@
+- Finish Help
+-Finish Flag Countries
+-Shorten News
+-Code Latest News
+-Bot info
+
+
+
+TODAY:
+DESTROY SQLITE AND USE POSTGRESQL, add ownerguilds and 
+LASTEST_INFO commnd
+
+
+
+when zola kicked, he keeps the data, and if reinvite, asks if same settings or reset everything.
+Create table per guild
+
+
+
+
+
+
+{
+Idea for shop : sell ur shop and use zola for your business! command will be !shop [name of your shop] Price : 5$ or less / Must be automatic
+If yes, commands !shop [name] and !list_shops need to be coded
+}
+
+SHOP:
+
+-------------------------------------------------------------------------------------
+------------------------------------     BOTS    ------------------------------------
+-------------------------------------------------------------------------------------
+
+NOTE FOR OPTION 1 AND 2: If you want to have the bot as soon as possible, meet the requirements and watch this video. Once you choose whether option 1 and 2 interest you and precise the optional features you do want, zola will instantly send you the required files!
+
+NOTE FOR THE PRICE : -Some may say that this must be free, since anyone can code that by reading some documentation. However, these prices have been set according to the delivery time, that is, in most of the options, almost inexistant (especially if watching the video)
+                     -If you do need these bots but can't afford it : -You can buy it with zolos (by playing zola games)
+                                                                      -If you can afford a part of it, negotiations are open
+
+1) Default Bot: --- Price : 4.99 $ or 10,000 ZOLOS ---Delivery Time : If everything is specified in the DM, and the buyer has a computer with the requirements (check) --> Up to 2 hours after I respond to the buyer
+    -Admin Commands (ban,kick,warn)
+    -Welcome/Leave Messages
+    -Appropriate Channel etc.
+    On Request (Price won't change):
+        -Ping latency
+        -8 Ball
+        -Change Prefix
+        -Custom Bot Status (Watching x servers / Playing !help / etc.)
+        -Create role / Delete Role / List roles /
+        -List Boosters of the Server
+        -Text DM Welcome message
+        -Fun random commands (specify)
+
+2) Default Bot + Advanced Commands:   [POPULAR OPTION]  --- Price : 9.99 $  --- Delivery Time : 24 hours
+    -Shop with Buy Commands
+    -Bank Accounts
+    -Instagram Check Account
+    -Hypixel Check User
+    Optional=Create Hypixel Party Platform (people looking for parties)  -- Price : 1.99$
+    -Custom Imaged Welcome Message
+    -Full User Info for Moderators
+    -Delete Messages containing a list of words that the buyer will send me
+    Optional=Conversation with bot -- Price : 0.99 $
+
+3) Advanced Bot: --- Price : Depends on the type of game
+    -All of the above (please specify)
+    -Custom Game
+    -Regular tasks (tasks (e.g : Contest that occur every x seconds/minutes/hours/days and reset it at the end of time and reruns))
+
+4) Custom Bot (If none of the above options interested you)--- Use !buy bot custom and follow the directions sent by zola -- Price  / Time: Depends on the request
+
+
+-------------------------------------------------------------------------------------
+------------------------------------     BOTS    ------------------------------------
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+Let's say I have the following code:
+```Python
+user_input=input("Country that has this flag:")
+actual_answer="antarctica"
+```
+If user_input="antartica", so almost correct, I'd like that the bot prints "Almost there"? Is there a way to do that, maybe other than regular expressions and pattern searching?
