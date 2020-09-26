@@ -19,7 +19,6 @@ from newsapi import NewsApiClient
 from fuzzywuzzy import fuzz
 from utils import appropriate_channel
 import utils
-from cogs.poems import Contest
 import asyncpg
 import datetime
 
@@ -258,14 +257,6 @@ async def on_member_join(member):
         db.commit()
         print(f'NEW: {USER_NAME} has a balance of 0')
     db.close()
-
-
-"""
-@client.event
-async def on_member_remove(member):
-    pass
-"""
-
 
 
 @client.event #WORK ON THAT
@@ -785,7 +776,7 @@ async def news(ctx,language,*query):
     
     
     else:
-        await ctx.send("I don't know this language OR I don't use it to retrieve news... Check `z!help` for further information")
+        await ctx.send(f"I don't know this language OR I don't use it to retrieve news... Check `{_}help` for further information")
 
 
 @client.command()
