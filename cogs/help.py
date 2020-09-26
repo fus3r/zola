@@ -21,9 +21,9 @@ class Help(commands.Cog):
             description="Everything you need to know",
             color=discord.Color.green()
         )
-        general_help.add_field(name="Basic commands", value="Bot info ℹ️ - `z!about`\nServer info - `z!info`",inline=False)
-        general_help.add_field(name="👑 Moderators, Admins & Owner 👑", value="Use my Big3 commands with `z!help big3`",inline=False)
-        general_help.add_field(name="Do you dream of wealth?", value="Use my economy commands. More info with `z!help economy`",inline=False)
+        general_help.add_field(name="ℹ️Basic commandsℹ️", value="Bot info - `z!about`\nServer info - `z!info`",inline=False)
+        general_help.add_field(name="👑 Moderators, Admins & Owner 👑", value="Use my Big3 commands <:verycool:739613733474795520> with `z!help big3`",inline=False)
+        general_help.add_field(name="🤑 Do you dream of wealth? 🤑", value="Use my economy commands. More info with `z!help economy`",inline=False)
         general_help.add_field(name="<a:froggydefault:744347632754884639>Games<a:froggydefault:744347632754884639>", value="-Play the **Flag game** 🇫🇷. More info with `z!help flag`\n-Play the **Yam Game** 🎲. More info with `z!help yam`\n-Participate to a **Multiserver Poem Contest** ✍️! More info with `z!help poem`",inline=False)
         await ctx.send(embed=general_help)
 
