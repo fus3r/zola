@@ -37,11 +37,12 @@ class Info(commands.Cog):
         DIR_guilds="d:\CODING\DISCORD BOT\Bot\\"
         db_guilds=sqlite3.connect(os.path.join(DIR_guilds,"Guild.db"))
         SQL_guilds=db_guilds.cursor()
-
-        SQL_guilds.execute(f'select location from Guilds where guild_id="{ctx.guild.id}"')
+        print(ctx.guild.id)
+        SQL_guilds.execute('select location from Guilds where guild_id=?',(ctx.guild.id,))
         location=SQL_guilds.fetchone()
-        print(location[0])
-        channel_location = find(lambda x: x.name == location[0],  ctx.guild.text_channels) 
+        channel_location = find(lambda x: x.name == "".join(location),  ctx.guild.text_channels) 
+        SQL_guilds.execute('select prefix from Guilds where guild_id=?',(ctx.guild.id,))
+        prefix=SQL_guilds.fetchone()
         proc = Process()
         with proc.oneshot():
             mem_total = virtual_memory().total / (1024 ** 2)
@@ -63,13 +64,13 @@ class Info(commands.Cog):
              False),
 
             ("__*<a:squirtleHype:739616791084400701> Support Server*__",
-             "[Here!](https://discord.gg/FhxgvF)", True),
+             "https://discord.gg/4Q2KQN", False),
 
             ("__*<a:crabrave:739615014679347201> Invite Link*__",
              "Not set yet", True),
              #"[Here!](https://discord.com/oauth2/authorize?client_id=721397896704163965&scope=bot&permissions=470117623)", True),
 
-            ("__*❗ Current Prefix*__", f'`{ctx.prefix}`', True),
+            ("__*❗ Current Prefix*__", f'`{"".join(prefix)}`', True),
             ("__*❗ My token*__ : <a:loading:747680523459231834>", 'Patience scammer', False),
             ("__*Discord Stats*__",
              "All Guilds: {}"
@@ -81,7 +82,7 @@ class Info(commands.Cog):
                                     len(self.bot.users)), True),
 
             #("__*Line Count*__", lineCount(), True),
-            ("__*Help Command*__", "Under Construction", True),
+            ("__*Help Command*__", f"`{''.join(prefix)}help`", True),
             ("__*Where can you use me*__?", channel_location.mention, False),
             ("__*Uptime*__", f"{days}d, {hours}h, {minutes}m, {seconds}s", False),
             ("__*Latency*__", f'{round(self.bot.latency * 1000)}ms', False),
