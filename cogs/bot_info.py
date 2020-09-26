@@ -17,7 +17,9 @@ class Info(commands.Cog):
     
     def __init__(self,bot):
         self.bot=bot
-        
+
+
+
     
     @commands.command()
     @utils.appropriate_channel()
@@ -55,7 +57,7 @@ class Info(commands.Cog):
 
         fields = [
             ("__*Developer*__", "<@358629457025826816>", False),
-
+            ("__*Github<:github:744345792172654643>*__", "https://github.com/TheFuser", False),
             ("__*Language | Library*__",
              f"<:python:596577462335307777> Python {python_version()} | <:dpy:596577034537402378> Discord.py {discord_version}",
              False),
@@ -68,7 +70,7 @@ class Info(commands.Cog):
              #"[Here!](https://discord.com/oauth2/authorize?client_id=721397896704163965&scope=bot&permissions=470117623)", True),
 
             ("__*❗ Current Prefix*__", f'`{ctx.prefix}`', True),
-
+            ("__*❗ My token*__ : <a:loading:747680523459231834>", 'Patience scammer', False),
             ("__*Discord Stats*__",
              "All Guilds: {}"
              "\nAll Channels: {}"
@@ -322,6 +324,7 @@ class Info(commands.Cog):
 
 
         await ctx.send(embed=data)
+    
 
 def setup(bot):
     bot.add_cog(Info(bot))
