@@ -26,8 +26,17 @@ import datetime
 
 lock = asyncio.Lock() #For equality in the game, basically it is Synchronization Primitives. For further info go to https://docs.python.org/3/library/asyncio-sync.html
 
-client = commands.Bot(command_prefix='z!') #The basic's basic of a Python Discord Bot
-prefix = "z!" #Default prefix, used in !owner prefix
+def get_prefix(client,message):
+    DIR_guilds=os.path.dirname(__file__)
+    db_guilds=sqlite3.connect(os.path.join(DIR_guilds,"Guild.db"))
+    SQL_guilds=db_guilds.cursor()
+    SQL_guilds.execute('select prefix from Guilds where guild_id = ?',(message.guild.id,))
+    prefix = SQL_guilds.fetchone()
+    return "".join(prefix)
+
+
+client = commands.Bot(command_prefix=get_prefix) #The basic's basic of a Python Discord Bot
+prefix = get_prefix #Default prefix, used in !owner prefix
 client.launch_time = datetime.datetime.utcnow()
 client.remove_command("help")
 
@@ -170,7 +179,7 @@ async def on_ready(): #When I run the bot
     print(client.user.id)
     print('------')
     await client.change_presence(
-       activity=discord.Activity(name=f"{len(client.guilds)} servs. Use {prefix}help", #len(client.guilds) --> Looks for the number of server that has the bot
+       activity=discord.Activity(name=f"{len(client.guilds)} servs. Use z!help", #len(client.guilds) --> Looks for the number of server that has the bot
                                   type=discord.ActivityType.watching))
 
 
@@ -259,7 +268,7 @@ async def on_member_remove(member):
 
 
 
-@client.event
+@client.event #WORK ON THAT
 async def on_guild_join(guild): #When a bot joins a server
     await client.change_presence(
         activity=discord.Activity(name=f"{len(client.guilds)} servers. Use {prefix}help", #Since the bot used to watch x servers. He watches now x+1 servers. We update that variable.
@@ -269,17 +278,21 @@ async def on_guild_join(guild): #When a bot joins a server
     DIR_guilds=os.path.dirname(__file__)
     db_guilds=sqlite3.connect(os.path.join(DIR_guilds,"Guild.db"))
     SQL_guilds=db_guilds.cursor()
-    SQL_guilds.execute('create table if not exists Guilds("Num" integer primary key autoincrement,"guild_id" INTEGER NOT NULL, "guild_name" TEXT, "wantsWelcome" INTEGER, "wantsPoem" INTEGER, "wantsCrosschat" INTEGER, "location" TEXT)')
-
     GUILD_ID=guild.id
-    GUILD_NAME=str(guild)
-    wants=0
-    default_location="zola"
-    execute = ('insert into Guilds(guild_id, guild_name, wantsWelcome, wantsPoem, wantsCrosschat, location) values(?,?,?,?,?,?)')
-    val = (GUILD_ID, GUILD_NAME, wants, wants, wants, default_location)
-    SQL_guilds.execute(execute, val)
-    print(f'Working for guild {str(guild)}')
-    db_guilds.commit()
+    SQL_guilds.execute('select * from Guilds where guild_id = ?',(GUILD_ID,))
+    result=SQL_guilds.fetchone()
+    if result is None:
+        GUILD_NAME=str(guild)
+        wants=0
+        default_location="zola"
+        execute = ('insert into Guilds(guild_id, guild_name, wantsWelcome, wantsPoem, wantsCrosschat, location) values(?,?,?,?,?,?)')
+        val = (GUILD_ID, GUILD_NAME, wants, wants, wants, default_location)
+        SQL_guilds.execute(execute, val)
+        print(f'Working for guild {str(guild)}')
+        db_guilds.commit()
+    else:
+        pass
+        #await ctx.send("Warning. I was in that server. Do you want to erase all data and settings or keep them? Send `z!erase` or `z!keep`")
 
 
     #Very important notice: Let's say the bot was before in this server. The category and 2 text channels would be there. Since not a lot of important stuff is there (only commands and some old chat), the bot deletes them.
@@ -424,10 +437,7 @@ async def define(ctx,SearchWord):
     else:
         await ctx.send("Word not found")
 
-@client.command()
-@appropriate_channel()
-async def help(ctx):
-    await ctx.send("Under Construction, patience my friend.")
+
 
 
 @client.command()
